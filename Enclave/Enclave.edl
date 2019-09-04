@@ -1,0 +1,37 @@
+enclave{
+    from "mbedtls-SGX/lib/mbedtls_sgx.edl" import *;
+    from "sgx_tstdc.edl" import *;
+    include "sgx_tseal.h"
+    trusted {
+        public int ecdsa_sign_m(
+            [in, size=in_len] const uint8_t *data,
+            size_t in_len,
+            [user_check] uint8_t *rr,
+            [user_check] uint8_t *ss,
+            [user_check] uint8_t *vv);
+        
+        public int provision_ecdsa_key(
+            [in,size=secret_len] const sgx_sealed_data_t *secret,
+            size_t secret_len);
+
+        public int ecdsa_keygen_seal(
+            [user_check] unsigned char *o_sealed,
+            [in,out] size_t *olen,
+            [user_check] unsigned char *o_pubkey,
+            [user_check] unsigned char *o_address);
+
+        public int ecdsa_keygen_unseal(
+            [in,size=secret_len] const sgx_sealed_data_t *secret,
+            size_t secret_len,
+            [user_check] unsigned char* pubkey,
+            [user_check] unsigned char *address);
+
+        public int get_address(
+            [user_check] unsigned char *pubkey,
+            [user_check] unsigned char *address);
+    };
+
+    untrusted {
+        
+    };
+};
