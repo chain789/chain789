@@ -46,7 +46,7 @@ void print_key(sgx_enclave_id_t eid, string keyfile) {
 }
 
 void keygen(sgx_enclave_id_t eid, string keyfile) {
-  printf("generating key to %s", keyfile.c_str());
+  printf("generating key to %s\n", keyfile.c_str());
   unsigned char secret_sealed[SECRETKEY_SEALED_LEN];
   unsigned char pubkey[PUBKEY_LEN];
   unsigned char address[ADDRESS_LEN];
@@ -138,5 +138,5 @@ int main(int argc, const char *argv[]) {
   }
 
   sgx_destroy_enclave(eid);
-  printf("Info: all enclave closed successfully.");
+  printf("Info: all enclave closed successfully.\n");
 }

@@ -53,8 +53,8 @@ static mbedtls_mpi g_secret_key;
     } \
 } while(_FALSE)
 
-#define LL_CRITICAL(fmt, arg...) LOG( LOG_LVL_CRITICAL, fmt, ##arg )
-#define LL_LOG(fmt, arg...) LOG( LOG_LVL_LOG, fmt,##arg )
+#define LL_CRITICAL(fmt, arg...) LOG(LOG_LVL_CRITICAL, fmt, ##arg )
+#define LL_LOG(fmt, arg...) LOG(LOG_LVL_LOG, fmt,##arg )
 
 
 
@@ -287,7 +287,7 @@ int ecdsa_keygen_seal(unsigned char* o_sealed, size_t* olen,
         ret = -1;
         goto exit;
     }
-    LL_LOG("returning from keygen_seal");
+    LL_LOG("generate key success");
 
 exit:
     mbedtls_mpi_free(&secret);
